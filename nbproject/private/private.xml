@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Chessercizes/js/account.js</file>
             <file>file:/C:/xampp/htdocs/Chessercizes/index.html</file>
             <file>file:/C:/xampp/htdocs/Chessercizes/game.html</file>
-            <file>file:/C:/xampp/htdocs/Chessercizes/js/home.js</file>
-            <file>file:/C:/xampp/htdocs/Chessercizes/js/getRatings.js</file>
-            <file>file:/C:/xampp/htdocs/Chessercizes/css/custom.css</file>
+            <file>file:/C:/xampp/htdocs/Chessercizes/About.html</file>
+            <file>file:/C:/xampp/htdocs/Chessercizes/guest-dashboard.html</file>
+            <file>file:/C:/xampp/htdocs/Chessercizes/login.html</file>
         </group>
     </open-files>
 </project-private>

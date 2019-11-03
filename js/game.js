@@ -18,9 +18,6 @@ var game
              game.setPlayerColor($('#color-white').hasClass('active') ? 'white' : 'black');
              game.setDisplayScore($('#showScore').is(':checked'));
              game.start();
-             //game.setFen("8/pppppppp/8/8/8/8/PPPPPPPP/8 w KQkq -");
-             var fen = game.getFen();
-             
         },
         newGame();
    }

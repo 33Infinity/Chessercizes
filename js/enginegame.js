@@ -1,7 +1,7 @@
 var cfg;
-function engineGame(options) {
+function engineGame(options, fen) {
     options = options || {}
-    var game = new Chess();
+    var game = new Chess(fen);
     var board;
     /// We can load Stockfish via Web Workers or via STOCKFISH() if loaded from a <script> tag.
     var engine = typeof STOCKFISH === "function" ? STOCKFISH() : new Worker(options.stockfishjs || 'js/stockfish.js');
@@ -136,16 +136,19 @@ function engineGame(options) {
         return moves;
     }
 
-    function prepareMove() {
+    function prepareMove(ondropped) {
         stopClock();
         $('#pgn').text(game.pgn());
-        board.position(game.fen());
+        if(!ondropped)
+        {
+            board.position(game.fen());
+        }
         updateClock();
         var turn = game.turn() == 'w' ? 'white' : 'black';
         if(!game.game_over()) {
             if(turn != playerColor) {
-                uciCmd('position startpos moves' + get_moves());
-                uciCmd('position startpos moves' + get_moves(), evaler);
+                uciCmd('position fen ' + game.fen());
+                uciCmd('position fen ' + game.fen(), evaler);
                 evaluation_el.textContent = "";
                 uciCmd("eval", evaler);
                 
@@ -204,7 +207,7 @@ function engineGame(options) {
                 isEngineRunning = false;
                 game.move({from: match[1], to: match[2], promotion: match[3]});
                 prepareMove();
-                uciCmd("eval", evaler)
+                uciCmd("eval", evaler);
                 evaluation_el.textContent = "";
                 //uciCmd("eval");
             /// Is it sending feedback?
@@ -242,7 +245,7 @@ function engineGame(options) {
 
         // illegal move
         if (move === null) return 'snapback';
-        prepareMove();
+        prepareMove(true);
     };
 
     // update the board position after the piece snap
@@ -261,23 +264,18 @@ function engineGame(options) {
     };
 
     board = new ChessBoard('board', cfg);
-    
-    $("#decreaseBoardSize").click(function() {
-        var width = $.Chessboard.width();
-        $.Chessboard.width(width-25);
-        board = new ChessBoard('board', cfg);
-        board.start();
-    });
-    $("#increaseBoardSize").click(function() {
-        var width = $.Chessboard.width();
-        $.Chessboard.width(width+25);
-        board = new ChessBoard('board', cfg);
-        board.start();
-    });
 
     return {
-        reset: function() {
-            game.reset();
+        getFen: function() {
+            return game.fen();
+        },
+        
+        setFen: function(fen) {
+            board.position(fen);
+        },
+        
+        reset: function(fen) {
+            game.reset(fen);
             uciCmd('setoption name Contempt value 0');
             //uciCmd('setoption name Skill Level value 20');
             this.setSkillLevel(0);

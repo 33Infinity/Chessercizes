@@ -181,11 +181,14 @@ window['Chess'] = window['Chess'] || function(fen) {
     move_number = 1;
     history = [];
     header = {};
-    update_setup(generate_fen());
+    update_setup(generate_fen(fen));
   }
 
-  function reset() {
-    load(DEFAULT_POSITION);
+  function reset(fen) {
+    if(!fen)  
+        load(DEFAULT_POSITION);
+    else
+        load(fen);
   }
 
   function load(fen) {
@@ -233,7 +236,7 @@ window['Chess'] = window['Chess'] || function(fen) {
     half_moves = parseInt(tokens[4], 10);
     move_number = parseInt(tokens[5], 10);
 
-    update_setup(generate_fen());
+    update_setup(generate_fen(fen));
 
     return true;
   }
@@ -320,37 +323,39 @@ window['Chess'] = window['Chess'] || function(fen) {
     return {valid: true, error_number: 0, error: errors[0]};
   }
 
-  function generate_fen() {
+  function generate_fen(fen) {
     var empty = 0;
-    var fen = '';
+    if(!fen)
+    {
+        fen = '';
+        for (var i = SQUARES.a8; i <= SQUARES.h1; i++) {
+          if (board[i] == null) {
+            empty++;
+          } else {
+            if (empty > 0) {
+              fen += empty;
+              empty = 0;
+            }
+            var color = board[i].color;
+            var piece = board[i].type;
 
-    for (var i = SQUARES.a8; i <= SQUARES.h1; i++) {
-      if (board[i] == null) {
-        empty++;
-      } else {
-        if (empty > 0) {
-          fen += empty;
-          empty = 0;
+            fen += (color === WHITE) ?
+                     piece.toUpperCase() : piece.toLowerCase();
+          }
+
+          if ((i + 1) & 0x88) {
+            if (empty > 0) {
+              fen += empty;
+            }
+
+            if (i !== SQUARES.h1) {
+              fen += '/';
+            }
+
+            empty = 0;
+            i += 8;
+          }
         }
-        var color = board[i].color;
-        var piece = board[i].type;
-
-        fen += (color === WHITE) ?
-                 piece.toUpperCase() : piece.toLowerCase();
-      }
-
-      if ((i + 1) & 0x88) {
-        if (empty > 0) {
-          fen += empty;
-        }
-
-        if (i !== SQUARES.h1) {
-          fen += '/';
-        }
-
-        empty = 0;
-        i += 8;
-      }
     }
 
     var cflags = '';
@@ -463,14 +468,17 @@ window['Chess'] = window['Chess'] || function(fen) {
   function generate_moves(options) {
     function add_move(board, moves, from, to, flags) {
       /* if pawn promotion */
-      if (board[from].type === PAWN &&
-         (rank(to) === RANK_8 || rank(to) === RANK_1)) {
-          var pieces = [QUEEN, ROOK, BISHOP, KNIGHT];
-          for (var i = 0, len = pieces.length; i < len; i++) {
-            moves.push(build_move(board, from, to, flags, pieces[i]));
-          }
-      } else {
-       moves.push(build_move(board, from, to, flags));
+      if(board[from] != null)
+      {
+        if (board[from].type === PAWN &&
+           (rank(to) === RANK_8 || rank(to) === RANK_1)) {
+            var pieces = [QUEEN, ROOK, BISHOP, KNIGHT];
+            for (var i = 0, len = pieces.length; i < len; i++) {
+              moves.push(build_move(board, from, to, flags, pieces[i]));
+            }
+        } else {
+            moves.push(build_move(board, from, to, flags));
+        }
       }
     }
 
@@ -1147,8 +1155,8 @@ window['Chess'] = window['Chess'] || function(fen) {
       return load(fen);
     },
 
-    reset: function() {
-      return reset();
+    reset: function(fen) {
+      return reset(fen);
     },
 
     moves: function(options) {

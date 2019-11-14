@@ -49,3 +49,6 @@ body {
     font-size: 1.5rem;
 }
 
+.navbar-nav {
+  margin: 0;
+}

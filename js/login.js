@@ -22,11 +22,6 @@ function handleLoggedInOutUser()
     xmlhttp.send();
 }
 
-function getLoggedInUser()
-{
-    
-}
-
 function logIn()
 {
     var username = $("#txtLoginUsername").val();

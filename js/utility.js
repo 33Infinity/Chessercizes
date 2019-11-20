@@ -8,4 +8,19 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function getQueryString(parameterNames, parameterValues)
+{
+    var queryString = "";
+    var length = parameterNames.length;
+    for(var i=0; i<length; i++)
+    {
+        queryString += parameterNames[i] + "=" + parameterValues[i];
+        if(i!==length-1)
+        {
+            queryString += "&";
+        }
+    }
+    return queryString;
+}
+
 

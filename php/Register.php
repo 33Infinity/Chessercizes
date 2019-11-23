@@ -1,10 +1,18 @@
 <?php
     require_once('../php/DataStore/DAO/UserDAO.php');
+    require_once('../php/Encryption.php');
     
-    //echo "here";
     $register = new Register($_GET['userName'], $_GET['lastName'], $_GET['firstName'], $_GET['email'], $_GET['password']);
-    echo $register->UserExists();
-    //echo "dfs";
+    $userName = $register->UserExists();
+    if(is_null($userName))
+    {
+        $register->CreateAccount();
+        echo ACCOUNTSUCCESSFULLYCREATED;
+    }
+    else
+    {
+        echo ACCOUNTALREADYEXISTS;
+    }
     
     class Register
     {
@@ -27,9 +35,19 @@
         
         public function UserExists()
         {
-            $this->_userDAO->AddQueryItem(UserTO::USERNAME);
-            $this->_userDAO->AddQueryItem(UserTO::LASTNAME);
             $userTO = $this->_userDAO->FindUser($this->_userName);
             return $userTO->user_name;
+        }
+
+        public function CreateAccount()
+        {
+            $to = new UserTO();
+            $to->user_name = $this->_userName;
+            $to->first_name = $this->_firstName;
+            $to->last_name = $this->_lastName;
+            $to->email = $this->_email;
+            $EncryptObj = new Encryption();
+            $to->password = $EncryptObj->Encrypt($this->_password);
+            $this->_userDAO->InsertUser($to);
         }
     }

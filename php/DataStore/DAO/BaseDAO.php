@@ -59,11 +59,22 @@
                     $stmt->bind_param($types, ...$params);
                 }
                 $stmt->execute();
-                $res = $stmt->get_result();
+                $bindResults = $this->QueryItems;
+                $stmt->bind_result(...$bindResults);
                 $results = [];
-                while($row = $res->fetch_array(MYSQLI_ASSOC))
+                while ($stmt->fetch())
                 {
-                    array_push($results, $row);
+                    $result = [];
+                    $tempArr = [];
+                    array_push($tempArr, $bindResults);
+                    if(!is_null($tempArr))
+                    {
+                        for($i=0; $i<count($this->QueryItems); $i++)
+                        {
+                            $result[$this->QueryItems[$i]] = $bindResults[$i];
+                        }
+                        array_push($results, $result);
+                    }
                 }
                 $stmt->close();
                 return $results;

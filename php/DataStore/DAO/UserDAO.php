@@ -27,6 +27,7 @@
             $this->Connect();
             $to = new UserTO();
             $this->AddQueryItem($to::USERNAME);
+            $this->AddQueryItem($to::LASTNAME);
             $this->AddFilter(sprintf("%s=?", $to::USERNAME));
             $this->AddCommandParameter("s", $userName);
             $results = $this->Select($to::TABLENAME);

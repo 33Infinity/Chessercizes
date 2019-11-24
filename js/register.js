@@ -36,8 +36,17 @@ var register
             {
                 if (xmlhttp.readyState===4 && xmlhttp.status===200)
                 {
-                    var response = xmlhttp.responseText;
-                    alert(response);
+                    //var response = xmlhttp.responseText;
+                    var response = JSON.parse(this.responseText);
+                    if(response.ErrorMessage !== null)
+                    {
+                        customMessage(response.ErrorMessage);
+                    }
+                    else
+                    {
+                        customMessage(response.Message);
+                        window.location.href = './login.html';
+                    }
                 }
             };
             xmlhttp.open("GET","./php/Register.php?"+queryString,true);

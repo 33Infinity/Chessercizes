@@ -1,17 +1,21 @@
 <?php
     require_once('../php/DataStore/DAO/UserDAO.php');
     require_once('../php/Encryption.php');
+    require_once('../php/Response.php');
     
     $register = new Register($_GET['userName'], $_GET['lastName'], $_GET['firstName'], $_GET['email'], $_GET['password']);
     $userName = $register->UserExists();
+    $response = new Response();
     if(is_null($userName))
     {
         $register->CreateAccount();
-        echo ACCOUNTSUCCESSFULLYCREATED;
+        $response->Message = ACCOUNTSUCCESSFULLYCREATED;
+        echo json_encode($response);
     }
     else
     {
-        echo ACCOUNTALREADYEXISTS;
+        $response->ErrorMessage = ACCOUNTALREADYEXISTS;
+        echo json_encode($response);
     }
     
     class Register

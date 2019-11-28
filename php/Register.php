@@ -1,7 +1,5 @@
 <?php
-    require_once('../php/DataStore/DAO/UserDAO.php');
-    require_once('../php/Encryption.php');
-    require_once('../php/Response.php');
+    require_once('../php/Includes.php');
     
     $register = new Register($_GET['userName'], $_GET['lastName'], $_GET['firstName'], $_GET['email'], $_GET['password']);
     $userName = $register->UserExists();
@@ -50,8 +48,7 @@
             $to->first_name = $this->_firstName;
             $to->last_name = $this->_lastName;
             $to->email = $this->_email;
-            $EncryptObj = new Encryption();
-            $to->password = $EncryptObj->Encrypt($this->_password);
+            $to->password = Utilities::Encrypt($this->_password);
             $this->_userDAO->InsertUser($to);
         }
     }

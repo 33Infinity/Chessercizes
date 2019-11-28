@@ -11,7 +11,9 @@
         const FIRSTNAME = "first_name";
         const LASTNAME = "last_name";
         const PASSWORD = "password";
-        const EMAIL = "EMAIL";
+        const EMAIL = "email";
+        const SESSIONID = "session_id";
+        const LOGGEDIN = "logged_in";
        
         public $row_id;
         public $user_name;
@@ -20,4 +22,6 @@
         public $last_name;
         public $password;
         public $email;
+        public $session_id;
+        public $logged_in;
     }

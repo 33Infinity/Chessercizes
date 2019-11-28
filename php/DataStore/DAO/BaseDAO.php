@@ -1,6 +1,5 @@
 <?php
-    require_once('Connection.php');
-    require_once('Constants.php');
+    require_once('Includes.php');
     class BaseDAO
     {
         public $con;
@@ -44,7 +43,6 @@
         {
             if ($stmt = $this->con->prepare($sql))
             {
-
                 if(count($this->CommandParameters)>0)
                 {
                     $types = "";
@@ -81,10 +79,63 @@
             }
         }
 
-        function Insert($sql)
+        function Insert($columns, $values, $tableName)
         {
+            $columnSql = "";
+            $valueSql = "";
+            foreach ($columns as &$value)
+            {
+                $columnSql = sprintf("%s %s,", $columnSql, $value);
+            }
+            foreach ($values as &$value)
+            {
+                $valueSql = sprintf("%s '%s',", $valueSql, $value);
+            }
+            $sql = sprintf("insert into %s(%s)values(%s)", $tableName, substr($columnSql, 0, -1), substr($valueSql, 0, -1));
             if ($stmt = $this->con->prepare($sql)) 
             {
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+
+        function Update($columns, $columnValues, $tableName)
+        {
+            $sql = "";
+            $setSql = "";
+            $filterSql = "";
+            $types = "";
+            $params = [];
+            for($i = 0; $i < count($columns); $i++)
+            {
+                $setSql = sprintf("%s %s='%s',",$setSql, $columns[$i], $columnValues[$i]);
+            }
+            if(count($this->Filters)>0)
+            {
+                foreach ($this->Filters as &$value)
+                {
+                    $filterSql = sprintf("%s %s and ", $filterSql, $value);
+                }
+                $sql = sprintf("update %s set %s where %s",$tableName, substr($setSql, 0, -1), substr($filterSql, 0, -4));
+                
+                $values = "";
+                foreach ($this->CommandParameters as &$value)
+                {
+                    $types = sprintf("%s%s", $types, $value->GetType());
+                    $values = sprintf("%s%s,", $values, $value->GetValue());
+                    array_push($params, $value->GetValue());
+                }
+            }
+            else
+            {
+                $sql = sprintf("update %s set %s",$tableName, substr($setSql, 0, -1));
+            }
+            if ($stmt = $this->con->prepare($sql)) 
+            {
+                if(count($params)>0)
+                {
+                    $stmt->bind_param($types, ...$params);
+                }
                 $stmt->execute();
                 $stmt->close();
             }

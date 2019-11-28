@@ -22,20 +22,23 @@
   
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/bootbox.all.min.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/utility.js"></script>
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" onload="initialize()">
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-              <label for="inputEmail">Email address</label>
+              <input id="inputUserName" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
+              <label for="inputUserName">Username</label>
             </div>
           </div>
           <div class="form-group">
@@ -52,8 +55,7 @@
               </label>
             </div>
           </div>
-          <a class="btn btn-primary btn-block" href="index.html">Login</a>
-        </form>
+          <a id="btnLogin" class="btn btn-primary btn-block">Login</a>
         <div class="text-center">
           <a class="d-block small mt-3" href="SignUp.html">Register an Account</a>
           <a class="d-block small" href="forgot-password.html">Forgot Password?</a>

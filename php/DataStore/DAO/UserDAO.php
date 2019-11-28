@@ -1,7 +1,5 @@
 <?php
-    require_once('BaseDAO.php');
-    require_once(dirname(__DIR__, 2) . '/DataStore/TO/UserTO.php');
-    require_once(dirname(__DIR__, 2) . '/DataStore/CommandParameter.php');
+    require_once('Includes.php');
     class UserDAO extends BaseDAO
     {   
         function __construct(){}
@@ -27,7 +25,6 @@
             $this->Connect();
             $to = new UserTO();
             $this->AddQueryItem($to::USERNAME);
-            $this->AddQueryItem($to::LASTNAME);
             $this->AddFilter(sprintf("%s=?", $to::USERNAME));
             $this->AddCommandParameter("s", $userName);
             $results = $this->Select($to::TABLENAME);
@@ -35,17 +32,41 @@
             {
                 $to->user_name = $results[0][$to::USERNAME];
             }
-            return $to;
             $this->CleanUp();
+            return $to;
+        }
+
+        function FindUserPassword($userName, $password)
+        {
+            $this->Connect();
+            $to = new UserTO();
+            $this->AddQueryItem($to::USERNAME);
+            $this->AddFilter(sprintf("%s=?", $to::USERNAME));
+            $this->AddFilter(sprintf("%s=?", $to::PASSWORD));
+            $this->AddCommandParameter("s", $userName);
+            $this->AddCommandParameter("s", Utilities::Encrypt($password));
+            $results = $this->Select($to::TABLENAME);
+            if(count($results)>0)
+            {
+                $to->user_name = $results[0][$to::USERNAME];
+            }
+            $this->CleanUp();
+            return $to;
         }
 
         function InsertUser($to)
         {
             $this->Connect();
-            $sql = sprintf("insert into %s(%s,%s,%s,%s,%s)values('%s','%s','%s','%s','%s')",
-            $to::TABLENAME, $to::USERNAME, $to::FIRSTNAME, $to::LASTNAME, $to::EMAIL, $to::PASSWORD,
-            $to->user_name, $to->first_name, $to->last_name, $to->email, $to->password);
-            $this->Insert($sql);
+            $columns = [$to::USERNAME, $to::FIRSTNAME, $to::LASTNAME, $to::EMAIL, $to::PASSWORD];
+            $values = [$to->user_name, $to->first_name, $to->last_name, $to->email, $to->password];
+            $this->Insert($columns, $values, $to::TABLENAME);
+            $this->CleanUp();
+        }
+
+        function UpdateUser($columns, $values)
+        {
+            $this->Connect();
+            $this->Update($columns, $values, UserTO::TABLENAME);
             $this->CleanUp();
         }
     }

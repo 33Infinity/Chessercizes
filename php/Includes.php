@@ -1,0 +1,11 @@
+<?php
+    require_once('../php/Session.php');
+    require_once('../php/Utilities.php');
+    require_once('../php/Response.php');
+    require_once('../php/DataStore/DAO/BaseDAO.php');
+    require_once('../php/DataStore/DAO/UserDAO.php');
+    require_once('../php/Encryption.php');
+    require_once('../php/Connection.php');
+    require_once('../php/Constants.php');
+    require_once('../php/DataStore/TO/UserTO.php');
+    require_once('../php/DataStore/CommandParameter.php');

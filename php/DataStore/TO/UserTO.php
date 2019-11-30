@@ -14,6 +14,8 @@
         const EMAIL = "email";
         const SESSIONID = "session_id";
         const LOGGEDIN = "logged_in";
+        const QUICKRATING = "quick_rating";
+        const BLITZRATING = "blitz_rating";
        
         public $row_id;
         public $user_name;
@@ -24,4 +26,6 @@
         public $email;
         public $session_id;
         public $logged_in;
+        public $quick_rating;
+        public $blitz_rating;
     }

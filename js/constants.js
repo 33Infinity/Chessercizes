@@ -9,4 +9,8 @@ var constants
     //Actions
     var LOGIN = "login";
     //End Of Actions
+
+    //Parameters
+    var USERNAMEPARAMETER = "un";
+    //End Of Parameters
 }

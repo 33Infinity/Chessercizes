@@ -1,0 +1,7 @@
+var dashboard
+{
+    function initialize()
+    {
+        
+    }
+}

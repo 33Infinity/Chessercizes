@@ -8,6 +8,8 @@ var game
           load();
           var gameType = getParameterByName(GAMETYPEPARAMETER, window.location.href);
           var gameMode = getParameterByName(GAMEMODEPARAMETER, window.location.href);
+          var timeControl = getParameterByName(TIMECONTROLPARAMETER, window.location.href);
+          var userName = getParameterByName(USERNAMEPARAMETER, window.location.href);
           var startingFenPosition = getStartingFenPosition(gameType);
           if(gameMode===PVE)
           {
@@ -28,8 +30,14 @@ var game
           }
           else
           {
+               addToQueue(userName, gameType, gameMode, timeControl);
                newGame(startingFenPosition, 'w');
           }
+     }
+
+     function waitForQueue()
+     {
+          
      }
 }
 

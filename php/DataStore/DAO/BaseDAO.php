@@ -141,6 +141,33 @@
             }
         }
 
+        function Delete($tableName)
+        {
+            $types = "";
+            $params = [];
+            foreach ($this->Filters as &$value)
+            {
+                $filterSql = sprintf("%s %s and ", $filterSql, $value);
+            }
+            $sql = sprintf("delete from %s where %s",$tableName, substr($filterSql, 0, -4));
+            $values = "";
+            foreach ($this->CommandParameters as &$value)
+            {
+                $types = sprintf("%s%s", $types, $value->GetType());
+                $values = sprintf("%s%s,", $values, $value->GetValue());
+                array_push($params, $value->GetValue());
+            }
+            if ($stmt = $this->con->prepare($sql)) 
+            {
+                if(count($params)>0)
+                {
+                    $stmt->bind_param($types, ...$params);
+                }
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+
         function CleanUp()
         {
             $this->QueryItems = [];

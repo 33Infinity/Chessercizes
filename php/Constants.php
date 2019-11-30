@@ -8,4 +8,9 @@
 
     //Actions
     define("LOGIN", "login");
+    define("ADDUSERTOQUEUE", "putUserInQueue");
     //End Of Actions
+
+    //Game Types
+    define("ANY", "any");
+    //End Of Game Types

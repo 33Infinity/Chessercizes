@@ -12,28 +12,9 @@ var login
         });
     }
 
-    function handleLoggedInOutUser()
+    function getLoggedInUser()
     {
-        xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function()
-        {
-            if (xmlhttp.readyState===4 && xmlhttp.status===200)
-            {
-                var response = xmlhttp.responseText;
-                if(response==="Y")
-                {
-                    $("#isLoggedInOut").text("Logged In");
-                    $("#btnAdminManager").prop("disabled",false);
-                }
-                else
-                {
-                    $("#isLoggedInOut").text("Logged Out");
-                    $("#btnAdminManager").prop("disabled",true);
-                }
-            }
-        };
-        xmlhttp.open("GET","./php/Login.php?action=isLoggedIn&username=''&password=''&admin=''",true);
-        xmlhttp.send();
+        
     }
 
     function login()

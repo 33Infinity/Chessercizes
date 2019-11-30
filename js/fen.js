@@ -4,7 +4,7 @@ var fen
     {
         var fenMap = new Map();
         fenMap.set("classic", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-        fenMap.set("random", eval("getRandomStartingFenPosition()"));
+        fenMap.set("960", eval("getRandomStartingFenPosition()"));
         return fenMap.get(gametype);
     }
     

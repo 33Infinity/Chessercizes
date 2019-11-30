@@ -6,6 +6,7 @@ function engineGame(options, fen) {
     /// We can load Stockfish via Web Workers or via STOCKFISH() if loaded from a <script> tag.
     var engine = typeof STOCKFISH === "function" ? STOCKFISH() : new Worker(options.stockfishjs || 'js/stockfish.js');
     var evaler = typeof STOCKFISH === "function" ? STOCKFISH() : new Worker(options.stockfishjs || 'js/stockfish.js');
+    
     var engineStatus = {};
     var displayScore = false;
     var time = { wtime: 300000, btime: 300000, winc: 2000, binc: 2000 };
@@ -14,6 +15,7 @@ function engineGame(options, fen) {
     var isEngineRunning = false;
     var evaluation_el = document.getElementById("evaluation");
     var announced_game_over;
+    uciCmd('uci');
     // do not pick up pieces if the game is over
     // only pick up pieces for White
     var onDragStart = function(source, piece, position, orientation) {
@@ -41,7 +43,6 @@ function engineGame(options, fen) {
         
         (which || engine).postMessage(cmd);
     }
-    uciCmd('uci');
     
     ///TODO: Eval starting posistions. I suppose the starting positions could be different in different chess varients.
 
@@ -257,7 +258,7 @@ function engineGame(options, fen) {
     cfg = {
         showErrors: true,
         draggable: true,
-        position: 'start',
+        position: game.fen(),
         onDragStart: onDragStart,
         onDrop: onDrop,
         onSnapEnd: onSnapEnd

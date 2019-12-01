@@ -8,6 +8,7 @@
         public $QueryItems = [];
         public $Filters = [];
         public $CommandParameters = [];
+        public $SortItems = [];
         
         function Connect()
         {
@@ -35,6 +36,15 @@
                     $filterSql = sprintf("%s %s and ", $filterSql, $value);
                 }
                 $sql = sprintf("%s where %s", $sql, substr($filterSql, 0, -4));
+            }
+            if(count($this->SortItems)>0)
+            {
+                $sortSql = "";
+                foreach ($this->SortItems as &$value)
+                {
+                    $sortSql = sprintf("%s %s %s,", $sortSql, $value->GetColumn(), $value->GetOrder());
+                }
+                $sql = sprintf("%s order by %s", $sql, substr($sortSql, 0, -1));
             }
             return $this->ExecuteSelect($sql);
         }
@@ -174,6 +184,7 @@
             $this->QueryItems = [];
             $this->CommandParameters = [];
             $this->Filters = [];
+            $this->SortItems = [];
             $this->Disconnect();
         }
     }

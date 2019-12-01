@@ -11,3 +11,4 @@
     require_once('../php/DataStore/TO/UserTO.php');
     require_once('../php/DataStore/TO/GameQueueTO.php');
     require_once('../php/DataStore/CommandParameter.php');
+    require_once('../php/DataStore/SortItem.php');

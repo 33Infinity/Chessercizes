@@ -78,4 +78,13 @@
             $this->_gameQueueDAO->AddCommandParameter("s", $this->_userName);
             $this->_gameQueueDAO->UpdateMatchingUser($columns, $values);
         }
+
+        function PerformMatching()
+        {
+            $tos = $this->_gameQueueDAO->GetUnmatchedUsers();
+            if(count($tos) > 0)
+            {
+                
+            }
+        }
     }

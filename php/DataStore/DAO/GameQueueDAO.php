@@ -20,6 +20,12 @@
             array_push($this->CommandParameters, $commandParameter);
         }
 
+        function AddSortItem($column, $order)
+        {
+            $sortItem = new SortOrder($column, $order);
+            array_push($this->SortItems, $sortItem);
+        }
+
         function InsertUser($to)
         {
             $this->Connect();
@@ -100,5 +106,31 @@
             $this->Connect();
             $this->Update($columns, $values, GameQueueTO::TABLENAME);
             $this->CleanUp();
+        }
+
+        function GetUnmatchedUsers()
+        {
+            $tos = [];
+            $this->Connect();
+            $this->AddQueryItem(GameQueueTO::USERNAME);
+            $this->AddQueryItem(GameQueueTO::OPPONENT);
+            $this->AddQueryItem(GameQueueTO::GAMETYPE);
+            $this->AddQueryItem(GameQueueTO::GAMEMODE);
+            $this->AddQueryItem(GameQueueTO::TIMECONTROL);
+            $this->AddFilter(sprintf("%s=?", GameQueueTO::OPPONENT));
+            $this->AddCommandParameter("s", "");
+            $this->AddSortItem(GameQueueTO::ROWID, "asc");
+            $results = $this->Select(GameQueueTO::TABLENAME);
+            foreach ($results as &$result)
+            {
+                $to = new GameQueueTO();
+                $to->user_name = $result[GameQueueTO::USERNAME];
+                $to->game_type = $result[GameQueueTO::GAMETYPE];
+                $to->game_mode = $result[GameQueueTO::GAMEMODE];
+                $to->time_control = $result[GameQueueTO::TIMECONTROL];
+                array_push($tos, $to);
+            }
+            $this->CleanUp();
+            return $tos;
         }
     }

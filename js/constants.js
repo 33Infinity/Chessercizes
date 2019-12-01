@@ -11,6 +11,7 @@ var constants
     var FINDOPPONENT = "findOpponent";
     var GETLOGGEDINUSER = "getloggedinuser";
     var LOGIN = "login";
+    var REMOVEUSERFROMQUEUE = "removeUserFromQueue";
     //End Of Actions
 
     //Parameters

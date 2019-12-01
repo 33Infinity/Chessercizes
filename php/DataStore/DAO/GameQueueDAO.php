@@ -22,15 +22,15 @@
 
         function AddSortItem($column, $order)
         {
-            $sortItem = new SortOrder($column, $order);
+            $sortItem = new SortItem($column, $order);
             array_push($this->SortItems, $sortItem);
         }
 
         function InsertUser($to)
         {
             $this->Connect();
-            $columns = [$to::USERNAME, $to::GAMETYPE, $to::GAMEMODE, $to::TIMECONTROL];
-            $values = [$to->user_name, $to->game_type, $to->game_mode, $to->time_control];
+            $columns = [$to::USERNAME, $to::GAMETYPE, $to::TIMECONTROL];
+            $values = [$to->user_name, $to->game_type, $to->time_control];
             $this->Insert($columns, $values, $to::TABLENAME);
             $this->CleanUp();
         }
@@ -44,7 +44,7 @@
             $this->CleanUp();
         }
 
-        function FindMatchingUser($userName, $gameType, $gameMode, $timeControl)
+        function FindMatchingUser($userName, $gameType, $timeControl)
         {
             $this->Connect();
             $this->AddQueryItem(GameQueueTO::USERNAME);
@@ -56,11 +56,6 @@
             {
                 $this->AddFilter(sprintf("%s=?", GameQueueTO::GAMETYPE));
                 $this->AddCommandParameter("s", $gameType);
-            }
-            if($gameMode != ANY)
-            {
-                $this->AddFilter(sprintf("%s=?", GameQueueTO::GAMEMODE));
-                $this->AddCommandParameter("s", $gameMode);
             }
             if($timeControl != ANY)
             {
@@ -82,7 +77,6 @@
             $this->Connect();
             $this->AddQueryItem(GameQueueTO::OPPONENT);
             $this->AddQueryItem(GameQueueTO::GAMETYPE);
-            $this->AddQueryItem(GameQueueTO::GAMEMODE);
             $this->AddQueryItem(GameQueueTO::TIMECONTROL);
             $this->AddFilter(sprintf("%s=?", GameQueueTO::USERNAME));
             $this->AddCommandParameter("s", $userName);
@@ -94,14 +88,13 @@
             {
                $to->opponent = $results[0][GameQueueTO::OPPONENT];
                $to->game_type = $results[0][GameQueueTO::GAMETYPE];
-               $to->game_mode = $results[0][GameQueueTO::GAMEMODE];
-               $to->time_control = $results[0][GameQueueTO::GAMEMODE];
+               $to->time_control = $results[0][GameQueueTO::TIMECONTROL];
                return $to;
             }
             return null;
         }
 
-        function UpdateMatchingUser($userName)
+        function UpdateMatchingUser($columns, $values)
         {
             $this->Connect();
             $this->Update($columns, $values, GameQueueTO::TABLENAME);
@@ -115,7 +108,6 @@
             $this->AddQueryItem(GameQueueTO::USERNAME);
             $this->AddQueryItem(GameQueueTO::OPPONENT);
             $this->AddQueryItem(GameQueueTO::GAMETYPE);
-            $this->AddQueryItem(GameQueueTO::GAMEMODE);
             $this->AddQueryItem(GameQueueTO::TIMECONTROL);
             $this->AddFilter(sprintf("%s=?", GameQueueTO::OPPONENT));
             $this->AddCommandParameter("s", "");
@@ -126,7 +118,6 @@
                 $to = new GameQueueTO();
                 $to->user_name = $result[GameQueueTO::USERNAME];
                 $to->game_type = $result[GameQueueTO::GAMETYPE];
-                $to->game_mode = $result[GameQueueTO::GAMEMODE];
                 $to->time_control = $result[GameQueueTO::TIMECONTROL];
                 array_push($tos, $to);
             }

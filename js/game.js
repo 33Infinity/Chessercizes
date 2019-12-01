@@ -2,15 +2,20 @@ var game
 {
      var game;
      var wait_for_script;
+     var gameType;
+     var gameMode;
+     var timeControl;
+     var userName;
+     var startingFenPosition;
      var newEngineGame = function () { };
      function initializeGame() 
      {
           load();
-          var gameType = getParameterByName(GAMETYPEPARAMETER, window.location.href);
-          var gameMode = getParameterByName(GAMEMODEPARAMETER, window.location.href);
-          var timeControl = getParameterByName(TIMECONTROLPARAMETER, window.location.href);
-          var userName = getParameterByName(USERNAMEPARAMETER, window.location.href);
-          var startingFenPosition = getStartingFenPosition(gameType);
+          gameType = getParameterByName(GAMETYPEPARAMETER, window.location.href);
+          gameMode = getParameterByName(GAMEMODEPARAMETER, window.location.href);
+          timeControl = getParameterByName(TIMECONTROLPARAMETER, window.location.href);
+          userName = getParameterByName(USERNAMEPARAMETER, window.location.href);
+          startingFenPosition = getStartingFenPosition(gameType);
           if(gameMode===PVE)
           {
                game = engineGame(null, startingFenPosition);
@@ -30,10 +35,17 @@ var game
           }
           else
           {
-               addToQueue(userName, gameType, gameMode, timeControl);
+               addToQueue(userName, gameType, timeControl);
                waitForQueue(userName);
                //newGame(startingFenPosition, 'w');
           }
+     }
+
+     function prepareGame()
+     {
+          alert(userName);
+          alert(gameType);
+          alert(timeControl);
      }
 }
 

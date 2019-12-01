@@ -12,6 +12,7 @@
     define("FINDOPPONENT", "findOpponent");
     define("GETLOGGEDINUSER", "getloggedinuser");
     define("LOGIN", "login");
+    define("REMOVEUSERFROMQUEUE", "removeUserFromQueue");
     //End Of Actions
 
     //Game Types

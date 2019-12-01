@@ -1,10 +1,10 @@
 var gameQueue
 {
     var interval;
-    function addToQueue(userName, gameType, gameMode, timeControl)
+    function addToQueue(userName, gameType, timeControl)
     {
-        var parameterNames = ["action", "userName", "gameType", "gameMode", "timeControl"];
-        var parameterValues = [ADDUSERTOQUEUE, userName, gameType, gameMode, timeControl];
+        var parameterNames = ["action", "userName", "gameType", "timeControl"];
+        var parameterValues = [ADDUSERTOQUEUE, userName, gameType, timeControl];
         var queryString = getQueryString(parameterNames, parameterValues);
         xmlhttp=new XMLHttpRequest();
         xmlhttp.open("POST","./php/GameQueue.php?"+queryString,true);
@@ -28,22 +28,26 @@ var gameQueue
             if (xmlhttp.readyState===4 && xmlhttp.status===200)
             {
                 var response = JSON.parse(this.responseText);
-                if(response.ErrorMessage !== null)
-                {
-                    //alert(response.ErrorMessage);
-                }
-                else if(response.Message !== null)
-                {
-                    //alert(response.Message);
-                }
-                else
+                if(response.Opponent !== null)
                 {
                     clearInterval(interval);
-                    alert(response.Opponent);
+                    //alert(response.Opponent);
+                    removeUserFromQueue(userName);
+                    prepareGame();
                 }
             }
         };
         xmlhttp.open("GET","./php/GameQueue.php?"+queryString,true);
+        xmlhttp.send();
+    }
+
+    function removeUserFromQueue(userName)
+    {
+        var parameterNames = ["action", "userName"];
+        var parameterValues = [REMOVEUSERFROMQUEUE, userName];
+        var queryString = getQueryString(parameterNames, parameterValues);
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("POST","./php/GameQueue.php?"+queryString,true);
         xmlhttp.send();
     }
 }

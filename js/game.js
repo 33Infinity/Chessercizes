@@ -31,13 +31,9 @@ var game
           else
           {
                addToQueue(userName, gameType, gameMode, timeControl);
-               newGame(startingFenPosition, 'w');
+               waitForQueue();
+               //newGame(startingFenPosition, 'w');
           }
-     }
-
-     function waitForQueue()
-     {
-          
      }
 }
 

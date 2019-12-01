@@ -54,6 +54,22 @@
             return $to;
         }
 
+        function FindUserBySession($session)
+        {
+            $ret = "";
+            $this->Connect();
+            $this->AddQueryItem(UserTO::USERNAME);
+            $this->AddFilter(sprintf("%s=?", UserTO::SESSIONID));
+            $this->AddCommandParameter("s", $session);
+            $results = $this->Select(UserTO::TABLENAME);
+            if(count($results)>0)
+            {
+                $ret = $results[0][UserTO::USERNAME];
+            }
+            $this->CleanUp();
+            return $ret;
+        }
+
         function InsertUser($to)
         {
             $this->Connect();

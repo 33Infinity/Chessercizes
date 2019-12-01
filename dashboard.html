@@ -26,10 +26,12 @@
      <link href="css/custom.css" rel="stylesheet">
      <script src="js/login.js"></script>
      <script src="js/dashboard.js"></script>
+     <script src="js/constants.js"></script>
+     <script src="js/utility.js"></script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="initialize()">
 
      <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -42,7 +44,7 @@
           <!-- Sidebar -->
           <ul class="sidebar navbar-nav">
                <li class="nav-item">
-                    <a class="nav-link" href="guest-dashboard.html">
+                    <a class="nav-link" href="dashboard.html">
                          <i class="fas fa-fw fa-tachometer-alt"></i>
                          <span>Dashboard</span>
                     </a>
@@ -53,17 +55,17 @@
                          <span>Variants</span></a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="game.html?gt=classic&gm=pve$tc=quick">
+                    <a id="classicPVE" class="nav-link" href="">
                          <i class="fas fa-fw fa-chess-pawn"></i>
                          <span>Classic Chess PVE</span></a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="game.html?gt=classic&gm=pvp&tc=quick">
+                    <a id="classicPVP" class="nav-link" href="">
                          <i class="fas fa-fw fa-chess-pawn"></i>
                          <span>Local Game</span></a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link"><span>Not Logged In</span></a>
+                    <a class="nav-link"><span id="loggedInUser">Not Logged In</span></a>
                </li>
                <!--
                <li class="nav-item">

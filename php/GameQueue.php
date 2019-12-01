@@ -6,7 +6,7 @@
     if($action == ADDUSERTOQUEUE)
     {
         $gameQueue->RemoveUserFromQueue();
-        $gameMode->AddUserToQueue();
+        $gameQueue->AddUserToQueue();
     }
 
     class GameQueue

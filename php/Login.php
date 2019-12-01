@@ -1,11 +1,11 @@
 <?php
     require_once('../php/Includes.php');
 
-    $login = new Login($_GET['userName'], $_GET['password']);
     $action = $_GET['action'];
     $response = new Response();
     if($action==LOGIN)
     {
+        $login = new Login($_GET['userName'], $_GET['password']);
         if($login->ValidUser())
         {
             $login->PerformLogIn();
@@ -17,6 +17,13 @@
             $response->ErrorMessage = LOGINFAILED;
             echo json_encode($response);
         }
+    }
+    if($action==GETLOGGEDINUSER)
+    {
+        $login = new Login("", "");
+        $userName = $login->GetLoggedInUser();
+        $response->UserName = $userName;
+        echo json_encode($response);
     }
 
     class Login
@@ -47,5 +54,12 @@
             $this->_userDAO->AddFilter(sprintf("%s=?", UserTO::USERNAME));
             $this->_userDAO->AddCommandParameter("s", $this->_userName);
             $this->_userDAO->UpdateUser($columns, $values);
+        }
+
+        public function GetLoggedInUser()
+        {
+            $session=new Session();
+            $session->StartSession();
+            return $this->_userDAO->FindUserBySession(session_id());
         }
     }

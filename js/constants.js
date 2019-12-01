@@ -7,7 +7,9 @@ var constants
     //End Of Responses
 
     //Actions
+    var GETLOGGEDINUSER = "getloggedinuser";
     var LOGIN = "login";
+    var ADDUSERTOQUEUE = "addUserToQueue";
     //End Of Actions
 
     //Parameters

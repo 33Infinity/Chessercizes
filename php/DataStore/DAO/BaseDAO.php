@@ -144,6 +144,7 @@
         function Delete($tableName)
         {
             $types = "";
+            $filterSql = "";
             $params = [];
             foreach ($this->Filters as &$value)
             {

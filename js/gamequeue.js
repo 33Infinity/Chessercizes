@@ -9,4 +9,9 @@ var gameQueue
         xmlhttp.open("POST","./php/GameQueue.php?"+queryString,true);
         xmlhttp.send();
     }
+
+    function waitForQueue()
+    {
+          
+    }
 }

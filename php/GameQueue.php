@@ -1,12 +1,31 @@
 <?php
     require_once('../php/Includes.php');
 
-    $gameQueue = new GameQueue($_GET['userName'], $_GET['gameType'], $_GET['gameMode'], $_GET['timeControl']);
     $action = $_GET['action'];
+    $response = new Response();
     if($action == ADDUSERTOQUEUE)
     {
+        $gameQueue = new GameQueue($_GET['userName'], $_GET['gameType'], $_GET['gameMode'], $_GET['timeControl']);
         $gameQueue->RemoveUserFromQueue();
         $gameQueue->AddUserToQueue();
+    }
+    if($action == FINDOPPONENT)
+    {
+        $gameQueue = new GameQueue($_GET['userName'], "", "", "");
+        $to = $gameQueue->GetOpponent();
+        if($to != null)
+        {
+            $response->Opponent = $to->opponent;
+            $response->GameType = $to->game_type;
+            $response->GameMode = $to->game_mode;
+            $response->TimeControl = $to->time_control;
+            echo json_encode($response);
+        }
+        else
+        {
+            $response->Message = STILLSEARCHING;
+            echo json_encode($response);
+        }
     }
 
     class GameQueue
@@ -39,6 +58,11 @@
         function FindMatchingUser()
         {
             return $this->_gameQueueDAO->FindMatchingUser($this->_userName, $this->_gameType, $this->_gameMode, $this->_timeControl);
+        }
+
+        function GetOpponent()
+        {
+            return $this->_gameQueueDAO->GetOpponent($this->_userName);
         }
 
         function RemoveUserFromQueue()

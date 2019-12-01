@@ -2,14 +2,16 @@
     //Responses//
     define("ACCOUNTALREADYEXISTS", "Account Already Exists");
     define("ACCOUNTSUCCESSFULLYCREATED", "Account Successfully Created!");
-    define("SUCCESSFULLOGIN", "Successful log in?");
     define("LOGINFAILED", "Log in failed");
+    define("STILLSEARCHING", "Still Searching");
+    define("SUCCESSFULLOGIN", "Successful log in?");
     //End Of Responses
 
     //Actions
-    define("LOGIN", "login");
-    define("GETLOGGEDINUSER", "getloggedinuser");
     define("ADDUSERTOQUEUE", "addUserToQueue");
+    define("FINDOPPONENT", "findOpponent");
+    define("GETLOGGEDINUSER", "getloggedinuser");
+    define("LOGIN", "login");
     //End Of Actions
 
     //Game Types

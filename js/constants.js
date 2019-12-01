@@ -7,9 +7,10 @@ var constants
     //End Of Responses
 
     //Actions
+    var ADDUSERTOQUEUE = "addUserToQueue";
+    var FINDOPPONENT = "findOpponent";
     var GETLOGGEDINUSER = "getloggedinuser";
     var LOGIN = "login";
-    var ADDUSERTOQUEUE = "addUserToQueue";
     //End Of Actions
 
     //Parameters

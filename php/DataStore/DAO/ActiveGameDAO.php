@@ -26,15 +26,6 @@
             array_push($this->SortItems, $sortItem);
         }
 
-        function CreateGame($to)
-        {
-            $this->Connect();
-            $columns = [$to::WHITE, $to::BLACK];
-            $values = [$to->white, $to->black];
-            $this->Insert($columns, $values, $to::TABLENAME);
-            $this->CleanUp();
-        }
-
         function UpdateGame($columns, $values)
         {
             $this->Connect();

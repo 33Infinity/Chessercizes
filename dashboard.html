@@ -33,122 +33,165 @@
 
 <body id="page-top" onload="initialize()">
 
-     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-          <a class="navbar-brand mr-1" href="index.html">Chessercizes</a>
+     <a class="navbar-brand mr-1" href="index.html">Chessercizes</a>
 
-     </nav>
+</nav>
 
-     <div id="wrapper">
+<div id="wrapper">
 
-          <!-- Sidebar -->
-          <ul class="sidebar navbar-nav">
-               <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">
-                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                         <span>Dashboard</span>
-                    </a>
-               </li>
-               <li class="nav-item">
-                    <a class="nav-link disabled" href="variants.html">
-                         <i class="fas fa-fw fa-chess-knight"></i>
-                         <span>Variants</span></a>
-               </li>
-               <li class="nav-item">
-                    <a id="classicPVE" class="nav-link" href="">
-                         <i class="fas fa-fw fa-chess-pawn"></i>
-                         <span>Classic Chess PVE</span></a>
-               </li>
-               <li class="nav-item">
-                    <a id="classicPVP" class="nav-link">
-                         <i class="fas fa-fw fa-chess-pawn"></i>
-                         <span>Local Game</span></a>
-               </li>
-               <li class="nav-item">
-                    <a class="nav-link"><span id="loggedInUser">Not Logged In</span></a>
-               </li>
-               <!--
-               <li class="nav-item">
-                    <a class="nav-link" href="About.html">
-                         <i class="fas fa-fw fa-address-card"></i>
-                         <span>About</span></a>
-               </li>
-               <li class="nav-item">
-                    <a class="nav-link disabled" href="#">
-                         <i class="fas fa-fw far fa-lightbulb"></i>
-                         <span>Submit Feedback</span></a>
-               </li>
-               -->
-          </ul>
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+     <li class="nav-item">
+          <a class="nav-link" href="guest-dashboard.html">
+               <i class="fas fa-fw fa-tachometer-alt"></i>
+               <span>Dashboard</span>
+          </a>
+     </li>
+     <li class="nav-item">
+          <a class="nav-link" href="variants.html">
+               <i class="fas fa-fw fa-chess-knight"></i>
+               <span>Curriculum</span></a>
+     </li>
+     <li class="nav-item">
+          <a class="nav-link disabled" href="#">
+               <i class="fas fa-fw fa-chess-pawn"></i>
+               <span>Archive</span></a>
+     </li>
+</ul>
 
-          <div id="content-wrapper">
+<div id="content-wrapper">
 
-               <div class="container-fluid">
+<div class="container-fluid">
 
-                    <h1>Dashboard</h1>
-                    <hr>
-                    <p>Welcome back, (username)!</p>
-                    <h1>Ratings</h1>
-                    <hr>
-                    <p>Classic Chess: (rating)</p>
-                    <p>Fischer Random Chess: (rating)</p>
-                    <h1>Archived Games</h1>
-                    <hr>
-                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Game 1</a>
-                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Game 2</a>
+     <h1>Welcome Back, (Username)</h1>
+     <p>Join a pool to find an opponent</p>
+     <hr>
 
+     <div class="container">
+          <div class="row">
+               <div class="col-5">
+                    <h1>Random Variant</h1>
                </div>
-               <!-- /.container-fluid -->
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
+          
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>Fischer Random</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
+          
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>Pawn Wars</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
 
-               <!-- Sticky Footer -->
-               <footer class="sticky-footer">
-                    <div class="container my-auto">
-                         <div class="copyright text-center my-auto">
-                              <span>Copyright © Your Website 2019</span>
-                         </div>
-                    </div>
-               </footer>
-
-          </div>
-          <!-- /.content-wrapper -->
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>Three Checks</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
+          
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>Double Chess</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
+          
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>Take Me</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>     
+          <hr>
 
      </div>
-     <!-- /#wrapper -->
 
-     <!-- Scroll to Top Button-->
-     <a class="scroll-to-top rounded" href="#page-top">
-          <i class="fas fa-angle-up"></i>
-     </a>
 
-     <!-- Logout Modal-->
-     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                    <div class="modal-header">
-                         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">×</span>
-                         </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                         <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+<!-- Sticky Footer -->
+<footer class="sticky-footer">
+     <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+               <span>Copyright © Your Website 2019</span>
+          </div>
+     </div>
+</footer>
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+     <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                    </button>
+               </div>
+               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                </div>
           </div>
      </div>
+</div>
 
-     <!-- Bootstrap core JavaScript-->
-     <script src="vendor/jquery/jquery.min.js"></script>
-     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-     <!-- Core plugin JavaScript-->
-     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-     <!-- Custom scripts for all pages-->
-     <script src="js/sb-admin.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script>
 
 </body>
 

@@ -13,6 +13,9 @@
         const MOVENUMBER = "move_number";
         const SOURCE = "source";
         const DESTINATION = "destination";
+        const WHITETIMEREMAINING = "white_time_remaining";
+        const BLACKTIMEREMAINING = "black_time_remaining";
+        const STARTED = "started";
        
         public $game_id;
         public $white;
@@ -22,4 +25,7 @@
         public $move_number;
         public $source;
         public $destination;
+        public $white_time_remaining;
+        public $black_time_remaining;
+        public $started;
     }

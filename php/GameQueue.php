@@ -101,12 +101,41 @@
                                 $this->SetMatchingUser($to2->user_name, $to1->user_name);
                                 $tos[$i]->opponent = $to2->user_name;
                                 $tos[$j]->opponent = $to1->user_name;
+                                PrepareGame($to1, $to2);
                                 break;
                             }
                         }
                     }
                 }
             }
+        }
+
+        function PrepareGame($to1, $to2)
+        {
+            $agDAO = new ActiveGameDAO();
+            $gbDAO = new GameBaseDAO();
+            $agTO = new ActiveGameTO();
+            $gbTO = new GameBaseTO();
+            $randomNumber = Utilities::GetRandomNumber(0, 1);
+            if($randomNumber == 0)
+            {
+                $agTO->white = $to1->user_name;
+                $agTO->black = $to2->user_name;
+                $gbTO->white = $to1->user_name;
+                $gbTO->black = $to2->user_name;
+            }
+            else
+            {
+                $agTO->white = $to2->user_name;
+                $agTO->black = $to1->user_name;
+                $gbTO->white = $to2->user_name;
+                $gbTO->black = $to1->user_name;
+            }
+            $gbTO->game_type = Utilities::GetGameType($to1->game_type, $to2->game_type);
+            $gbTO->time_control = Utilities::GetTimeControl($to1->time_control, $to2->time_control);
+            $gbTO->game_mode = PVP;
+            $agDAO->CreateGame($agTO);
+            $gbDAO->CreateGame($gbTO);
         }
 
         function IsMatch($to1, $to2)

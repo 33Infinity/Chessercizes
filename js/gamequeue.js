@@ -31,7 +31,6 @@ var gameQueue
                 if(response.Opponent !== null)
                 {
                     clearInterval(interval);
-                    //alert(response.Opponent);
                     removeUserFromQueue(userName);
                     prepareGame();
                 }

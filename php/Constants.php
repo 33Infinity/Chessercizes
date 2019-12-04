@@ -17,4 +17,17 @@
 
     //Game Types
     define("ANY", "any");
+    define("960", "960");
+    define("CLASSIC", "classic");
     //End Of Game Types
+
+    //Time Controls
+    define("BLITZ", "blitz");
+    define("QUICK", "quick"); 
+    //End Of Time Controls
+
+    //Game Modes
+    define("PVP", "pvp");
+    define("PVE", "pve");
+    define("PVC", "pvc");
+    //End Of Game Modes

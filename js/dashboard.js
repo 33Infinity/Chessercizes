@@ -9,20 +9,20 @@ var dashboard
 
     function handleEvents()
     {
-        $("#classicPVE").click(function()
+        $("#classicPVPFifteen").click(function()
         {
             window.location.href = "./game.html?gt=classic&gm=pve&tc=quick&un=" + loggedInUser;
         });
 
-        $("#classicPVP").click(function()
+        $("#classicPVPFive").click(function()
         {
-            window.location.href = "./game.html?gt=classic&gm=pvp&tc=quick&un=" + loggedInUser;
+            window.location.href = "./game.html?gt=classic&gm=pvp&tc=blitz&un=" + loggedInUser;
         });
     }
 
     function setLoggedInUser(userName)
     {
         loggedInUser = userName;
-        $("#loggedInUser").html(userName);
+        $("#welcomeInput").html("Welcome Back, "+ userName);
     }
 }

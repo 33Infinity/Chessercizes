@@ -7,6 +7,7 @@ var game
      var timeControl;
      var userName;
      var startingFenPosition;
+     var opponent;
      var newEngineGame = function () { };
      function initializeGame() 
      {
@@ -41,11 +42,14 @@ var game
           }
      }
 
-     function prepareGame()
+     function prepareGame(opp, tc, gt)
      {
-          alert(userName);
-          alert(gameType);
-          alert(timeControl);
+          opponent = opp;
+          timeControl = tc;
+          gameType = gt;
+          $("#currentPlayer").text(userName);
+          $("#opponent").text(opp);
+          newGame(startingFenPosition, 'w');
      }
 }
 

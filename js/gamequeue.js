@@ -32,7 +32,7 @@ var gameQueue
                 {
                     clearInterval(interval);
                     removeUserFromQueue(userName);
-                    prepareGame();
+                    prepareGame(response.Opponent, response.TimeControl, response.GameType);
                 }
             }
         };

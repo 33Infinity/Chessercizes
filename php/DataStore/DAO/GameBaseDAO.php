@@ -29,9 +29,13 @@
         function CreateGame($to)
         {
             $this->Connect();
-            $columns = [$to::WHITE, $to::BLACK, $to::GAMETYPE, $to::TIMECONTROL, $to::GAMEMODE];
-            $values = [$to->white, $to->black, $to->game_type, $to->time_control, $to->game_mode];
-            $this->Insert($columns, $values, $to::TABLENAME);
+            $sql = sprintf("insert into %s(%s, %s, %s, %s, %s) 
+            select '%s' as %s, '%s' as %s, '%s' as %s, '%s' as %s, '%s' as %s
+            from %s where %s = 1 and (%s = '%s' or %s = '%s')
+            HAVING COUNT(*) = 0", $to::TABLENAME, $to::WHITE, $to::BLACK, $to::GAMETYPE, $to::TIMECONTROL, $to::GAMEMODE,
+            $to->white, $to::WHITE, $to->black, $to::BLACK, $to->game_type, $to::GAMETYPE, $to->time_control, $to::TIMECONTROL, $to->game_mode, $to::GAMEMODE,
+            $to::TABLENAME, $to::ACTIVE, $to::WHITE, $to->white, $to::WHITE, $to->black);
+            $this->InsertRaw($sql);
             $this->CleanUp();
         }
 

@@ -12,14 +12,29 @@
     }
     if($action == FINDOPPONENT)
     {
-        $gameQueue = new GameQueue($_GET['userName'], "", "", "");
+        $userName = $_GET['userName'];
+        $gameQueue = new GameQueue($userName, "", "", "");
         $to = $gameQueue->GetOpponent();
         if($to != null)
         {
-            $response->Opponent = $to->opponent;
-            $response->GameType = $to->game_type;
-            $response->TimeControl = $to->time_control;
-            echo json_encode($response);
+            $activeGameDAO = new ActiveGameDAO();
+            $activeGameTO = $activeGameDAO->GetActiveGame($userName);
+            if($activeGameTO->game_id != null)
+            {
+                $response->GameID = $activeGameTO->game_id;
+                $response->White = $activeGameTO->white;
+                $response->Black = $activeGameTO->black;
+                $response->Turn = $activeGameTO->turn;
+                $response->MoveNumber = $activeGameTO->move_number;
+                $response->Source = $activeGameTO->source;
+                $response->Destination = $activeGameTO->destination;
+                $response->WhiteTimeRemaining = $activeGameTO->white_time_remaining;
+                $response->BlackTimeRemaining = $activeGameTO->black_time_remaining;
+                $response->Started = $activeGameTO->started;
+                $response->GameType = $to->game_type;
+                $response->TimeControl = $to->time_control;
+                echo json_encode($response);
+            }
         }
         else
         {

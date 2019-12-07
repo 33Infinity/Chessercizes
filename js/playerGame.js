@@ -18,6 +18,11 @@ var playerGame
         board = new ChessBoard('board', cfg);
     }
 
+    function flipBoard()
+    {
+        board.flip();
+    }
+
     function onDragStart(source, piece, position, orientation)
     {
         if (game.game_over()) return false;

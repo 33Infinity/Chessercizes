@@ -9,4 +9,13 @@
         public $GameType = null;
         public $GameMode = null;
         public $TimeControl = null;
+        public $GameID = null;
+        public $White = null;
+        public $Black = null;
+        public $WhiteTimeRemaining = null;
+        public $BlackTimeRemaining = null;
+        public $Turn = null;
+        public $Source = null;
+        public $Destination = null;
+        public $Started = null;
     }

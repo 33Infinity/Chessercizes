@@ -87,6 +87,11 @@
                 $stmt->close();
                 return $results;
             }
+            else
+            {
+                $err = $this->con->error;
+                $err = mysqli_connect_error();
+            }
         }
 
         function Insert($columns, $values, $tableName)

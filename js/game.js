@@ -1,5 +1,7 @@
 var game 
 {
+     var clockInterval;
+     var moveInterval;
      var game;
      var wait_for_script;
      var gameType;
@@ -7,7 +9,16 @@ var game
      var timeControl;
      var userName;
      var startingFenPosition;
-     var opponent;
+     var white;
+     var black;
+     var turn;
+     var source;
+     var destination;
+     var whiteTimeRemaining;
+     var blackTimeRemaining;
+     var started;
+     var gameID;
+     var color;
      var newEngineGame = function () { };
      function initializeGame() 
      {
@@ -42,14 +53,33 @@ var game
           }
      }
 
-     function prepareGame(opp, tc, gt)
+     function prepareGame(activeGameObject)
      {
-          opponent = opp;
-          timeControl = tc;
-          gameType = gt;
+          gameID = activeGameObject.GameID;
+          white = activeGameObject.White;
+          black = activeGameObject.Black;
+          whiteTimeRemaining = activeGameObject.WhiteTimeRemaining;
+          blackTimeRemaining = activeGameObject.BlackTimeRemaining;
+          timeControl = activeGameObject.TimeControl;
+          gameType = activeGameObject.GameType;
           $("#currentPlayer").text(userName);
-          $("#opponent").text(opp);
-          newGame(startingFenPosition, 'w');
+          if(white===userName)
+          {
+               color = "w";
+               $("#opponent").text(black);
+               $("#time1").text(whiteTimeRemaining);
+               $("#time2").text(blackTimeRemaining);
+               newGame(startingFenPosition, 'w');
+          }
+          else
+          {
+               color = "b";
+               $("#opponent").text(white);
+               $("#time1").text(blackTimeRemaining);
+               $("#time2").text(whiteTimeRemaining);
+               newGame(startingFenPosition, 'b');
+               flipBoard();
+          }
      }
 }
 

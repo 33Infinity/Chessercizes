@@ -18,7 +18,6 @@ var gameQueue
 
     function getOpponent(userName)
     {
-        //alert("Searching for opponent");
         var parameterNames = ["action", "userName"];
         var parameterValues = [FINDOPPONENT, userName];
         var queryString = getQueryString(parameterNames, parameterValues);
@@ -28,11 +27,11 @@ var gameQueue
             if (xmlhttp.readyState===4 && xmlhttp.status===200)
             {
                 var response = JSON.parse(this.responseText);
-                if(response.Opponent !== null)
+                if(response.GameID !== null)
                 {
                     clearInterval(interval);
                     removeUserFromQueue(userName);
-                    prepareGame(response.Opponent, response.TimeControl, response.GameType);
+                    prepareGame(response);
                 }
             }
         };

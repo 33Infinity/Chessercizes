@@ -9,8 +9,11 @@
 
     //Actions
     define("ADDUSERTOQUEUE", "addUserToQueue");
+    define("CURRENTPLAYERMOVE", "currentPlayerMove");
     define("FINDOPPONENT", "findOpponent");
+    define("GAMEOVER", "gameOver");
     define("GETLOGGEDINUSER", "getloggedinuser");
+    define("GETOPPONENTMOVE", "getOpponentMove");
     define("LOGIN", "login");
     define("REMOVEUSERFROMQUEUE", "removeUserFromQueue");
     //End Of Actions

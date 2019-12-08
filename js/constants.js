@@ -8,8 +8,11 @@ var constants
 
     //Actions
     var ADDUSERTOQUEUE = "addUserToQueue";
+    var CURRENTPLAYERMOVE = "currentPlayerMove";
     var FINDOPPONENT = "findOpponent";
+    var GAMEOVER = "gameOver";
     var GETLOGGEDINUSER = "getloggedinuser";
+    var GETOPPONENTMOVE = "getOpponentMove";
     var LOGIN = "login";
     var REMOVEUSERFROMQUEUE = "removeUserFromQueue";
     //End Of Actions
@@ -17,4 +20,9 @@ var constants
     //Parameters
     var USERNAMEPARAMETER = "un";
     //End Of Parameters
+
+    //Time Controls
+    var BLITZ = "blitz";
+    var QUICK = "quick";
+    //End Of Time Controls
 }

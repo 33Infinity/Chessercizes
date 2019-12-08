@@ -34,4 +34,23 @@ function validateEmail(mail)
     return false;
 }
 
+function GetNewRating(currentPlayerRating, opponentRating, result, draw)
+{
+    var newRating = 0;
+    var k = 30;
+    var p1 = (1.0 / (1.0 + pow(10, ((currentPlayerRating-opponentRating) / 400))));
+    if(draw)
+    {
+        return currentPlayerRating + 30(.5 - p1);
+    }
+    if(result)
+    {
+        return currentPlayerRating + 30(1 - p1);
+    }
+    else
+    {
+        return currentPlayerRating + 30(0 - p1);
+    }
+}
+
 

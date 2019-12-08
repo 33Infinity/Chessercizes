@@ -45,16 +45,37 @@ var playerGame
         });
 
         // illegal move
-        if (move === null) return 'snapback';
+        if (move !== null) 
+        {
+            handleCurrentPlayerMove(source, target);
+        }
+        else
+        {
+            return 'snapback';
+        }
     }
 
     function onSnapEnd()
     {
-        /*board.move('e7-e5');
-        var move = game.move({
-            from: "e7",
-            to: "e5",
+        if (game.game_over())
+        {
+            var moves = game.moves();
+            handleGameOver(playerColor, false);
+        }
+    }
+
+    function makeMove(source, target)
+    {
+        board.move(source + "-" + target);
+        game.move({
+            from: source,
+            to: target,
             promotion: 'q'
-        });*/
+        });
+        if (game.game_over())
+        {
+            var moves = game.moves();
+            handleGameOver(playerColor, false);
+        }
     }
 }

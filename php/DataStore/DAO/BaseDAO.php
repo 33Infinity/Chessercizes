@@ -193,6 +193,15 @@
             }
         }
 
+        function UpdateRaw($sql)
+        {
+            if ($stmt = $this->con->prepare($sql)) 
+            {
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+
         function CleanUp()
         {
             $this->QueryItems = [];

@@ -26,9 +26,11 @@
             array_push($this->SortItems, $sortItem);
         }
 
-        function UpdateGame($columns, $values)
+        function UpdateGame($columns, $values, $gameID)
         {
             $this->Connect();
+            $this->AddFilter(sprintf("%s=?", ActiveGameTO::GAMEID));
+            $this->AddCommandParameter("i", $gameID);
             $this->Update($columns, $values, ActiveGameTO::TABLENAME);
             $this->CleanUp();
         }
@@ -51,14 +53,7 @@
             $this->AddCommandParameter("s", $user);
             $this->AddCommandParameter("s", $user);
             $results = null;
-            try
-            {
-                $results = $this->Select(ActiveGameTO::TABLENAME);
-            }
-            catch(Exception $e)
-            {
-                $exc = $e->getMessage();
-            }
+            $results = $this->Select(ActiveGameTO::TABLENAME);
             if($results != null)
             {
                 $to->game_id = $results[0][ActiveGameTO::GAMEID];
@@ -74,5 +69,14 @@
             }
             $this->CleanUp();
             return $to;
+        }
+
+        function DeleteActiveGame($gameID)
+        {
+            $this->Connect();
+            $this->AddFilter(sprintf("%s=?", ActiveGameTO::GAMEID));
+            $this->AddCommandParameter("i", $gameID);
+            $this->Delete(ActiveGameTO::TABLENAME);
+            $this->CleanUp();
         }
     }

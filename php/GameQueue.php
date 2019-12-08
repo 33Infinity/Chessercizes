@@ -21,6 +21,25 @@
             $activeGameTO = $activeGameDAO->GetActiveGame($userName);
             if($activeGameTO->game_id != null)
             {
+                $userDAO = new UserDAO();
+                $userTO = $userDAO->FindUser($userName);
+                $currentQuickRating = $userTO->quick_rating;
+                $currentBlitzRating = $userTO->blitz_rating;
+                $opponentQuickRating = "";
+                $opponentBlitzRating = "";
+                $userDAO = new UserDAO();
+                if($userName == $activeGameTO->white)
+                {
+                    $userTO = $userDAO->FindUser($activeGameTO->black);
+                    $opponentQuickRating = $userTO->quick_rating;
+                    $opponentBlitzRating = $userTO->blitz_rating;
+                }
+                else
+                {
+                    $userTO = $userDAO->FindUser($activeGameTO->white);
+                    $opponentQuickRating = $userTO->quick_rating;
+                    $opponentBlitzRating = $userTO->blitz_rating;
+                }
                 $response->GameID = $activeGameTO->game_id;
                 $response->White = $activeGameTO->white;
                 $response->Black = $activeGameTO->black;
@@ -33,6 +52,10 @@
                 $response->Started = $activeGameTO->started;
                 $response->GameType = $to->game_type;
                 $response->TimeControl = $to->time_control;
+                $response->CurrentPlayerQuickRating = $currentQuickRating;
+                $response->CurrentPlayerBlitzRating = $currentBlitzRating;
+                $response->OpponentPlayerQuickRating = $opponentQuickRating;
+                $response->OpponentPlayerBlitzRating = $opponentBlitzRating;
                 echo json_encode($response);
             }
         }

@@ -39,10 +39,17 @@
             $this->CleanUp();
         }
 
-        function UpdateGame()
+        function UpdateGame($columns, $values)
         {
             $this->Connect();
             $this->Update($columns, $values, GameBaseTO::TABLENAME);
+            $this->CleanUp();
+        }
+
+        function UpdateGameRaw($sql)
+        {
+            $this->Connect();
+            $this->UpdateRaw($sql);
             $this->CleanUp();
         }
     }

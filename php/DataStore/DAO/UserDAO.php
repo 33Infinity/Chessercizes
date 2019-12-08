@@ -25,12 +25,16 @@
             $this->Connect();
             $to = new UserTO();
             $this->AddQueryItem($to::USERNAME);
+            $this->AddQueryItem($to::QUICKRATING);
+            $this->AddQueryItem($to::BLITZRATING);
             $this->AddFilter(sprintf("%s=?", $to::USERNAME));
             $this->AddCommandParameter("s", $userName);
             $results = $this->Select($to::TABLENAME);
             if(count($results)>0)
             {
                 $to->user_name = $results[0][$to::USERNAME];
+                $to->quick_rating = $results[0][$to::QUICKRATING];
+                $to->blitz_rating = $results[0][$to::BLITZRATING];
             }
             $this->CleanUp();
             return $to;

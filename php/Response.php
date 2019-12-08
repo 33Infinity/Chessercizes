@@ -18,4 +18,8 @@
         public $Source = null;
         public $Destination = null;
         public $Started = null;
+        public $CurrentPlayerQuickRating = null;
+        public $OpponentQuickRating = null;
+        public $CurrentPlayerBlitzRating = null;
+        public $OpponentBlitzRating = null;
     }

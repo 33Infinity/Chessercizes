@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,9 +33,7 @@
 <body id="page-top" onload="initialize()">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
      <a class="navbar-brand mr-1" href="index.html">Chessercizes</a>
-
 </nav>
 
 <div id="wrapper">
@@ -63,16 +60,18 @@
 
 <div id="content-wrapper">
 
+<!-- Page body -->
 <div class="container-fluid">
 
      <h1 id="welcomeInput"></h1>
      <p>Join a pool to find an opponent</p>
      <hr>
 
+     <!-- Player Pools -->
      <div class="container">
           <div class="row">
                <div class="col-5">
-                    <h1>Classic Chess</h1>
+                    <h2>Classic Chess</h2>
                </div>
                <div class="col">
                     <a id="classicPVPFive" class="btn btn-warning btn-lg" role="button">5</a>
@@ -80,18 +79,16 @@
                </div>
           </div>     
           <hr>
-
           <div class="row">
                <div class="col-5">
-                    <h1>Random Variant</h1>
+                    <h2>Random Variant</h2>
                </div>
                <div class="col">
                     <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
                     <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
                </div>
           </div>     
-          <hr>
-          
+          <hr>          
           <div class="row">
                <div class="col-5 align-self-center">
                     <h2>Fischer Random</h2>
@@ -102,7 +99,16 @@
                </div>
           </div>     
           <hr>
-          
+          <div class="row">
+               <div class="col-5 align-self-center">
+                    <h2>No-Castling</h2>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
+                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+               </div>
+          </div>
+          <hr>
           <div class="row">
                <div class="col-5 align-self-center">
                     <h2>Pawn Wars</h2>
@@ -113,7 +119,6 @@
                </div>
           </div>     
           <hr>
-
           <div class="row">
                <div class="col-5 align-self-center">
                     <h2>Three Checks</h2>
@@ -123,8 +128,7 @@
                     <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
                </div>
           </div>     
-          <hr>
-          
+          <hr>          
           <div class="row">
                <div class="col-5 align-self-center">
                     <h2>Double Chess</h2>
@@ -134,8 +138,7 @@
                     <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
                </div>
           </div>     
-          <hr>
-          
+          <hr>          
           <div class="row">
                <div class="col-5 align-self-center">
                     <h2>Take Me</h2>
@@ -145,65 +148,145 @@
                     <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
                </div>
           </div>     
-          <hr>
-          
+          <hr>          
+     </div>
+
+<!-- Player ratings -->
+<div class="container-fluid">
+     <h1>(Player Name)'s Ratings</h1>
+     <p>Learn from curriculum to improve!</p>
+     <hr>
+
+     <div class="container">
           <div class="row">
-               <div class="col-5 align-self-center">
-                    <h2>No-Castling</h2>
+               <div class="col-5">
+                    <h2>Classic Chess</h2>
                </div>
                <div class="col">
-                    <a href="#" class="btn btn-warning btn-lg disabled" role="button" aria-disabled="true">5</a>
-                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">15</a>
+                    <h2>(1860)</h2>
+                    <!-- or if no games played display "Unrated" -->
                </div>
           </div>     
           <hr>
-
-     </div>
-
-
-
-</div>
-<!-- /.container-fluid -->
-
-<!-- Sticky Footer -->
-<footer class="sticky-footer">
-     <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-               <span>Copyright © Your Website 2019</span>
-          </div>
-     </div>
-</footer>
-
-</div>
-<!-- /.content-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-     <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-          <div class="modal-content">
-               <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">×</span>
-                    </button>
+          <div class="row">
+               <div class="col-5">
+                    <h2>Fischer Random</h2>
                </div>
-               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-               <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+               <div class="col">
+                    <h2>(1982)</h2>
+                    <!-- or if no games played display "Unrated" -->
+               </div>
+          </div>     
+          <hr>
+          <div class="row">
+               <div class="col-5">
+                    <h2>No Castling</h2>
+               </div>
+               <div class="col">
+                    <h2>(827)</h2>
+                    <!-- or if no games played yet, display "Unrated" -->
                </div>
           </div>
+          <hr>
+          <!-- <div class="row">
+               <div class="col-5">
+                    <h2>Pawn Wars</h2>
+               </div>
+               <div class="col">
+                    <h2>Unrated</h2>
+               </div>
+          </div>     
+          <hr>          
+          <div class="row">
+               <div class="col-5">
+                    <h2>Three Checks</h2>
+               </div>
+               <div class="col">
+                    <h2>Unrated</h2>
+               </div>
+          </div>     
+          <hr>          
+          <div class="row">
+               <div class="col-5">
+                    <h2>Double Chess</h2>
+               </div>
+               <div class="col">
+                    <h2>Unrated</h2>
+               </div>
+          </div>     
+          <hr>          
+          <div class="row">
+               <div class="col-5">
+                    <h2>Take Me</h2>
+               </div>
+               <div class="col">
+                    <h2>Unrated</h2>
+               </div>
+          </div>     
+          -->        
      </div>
 </div>
+
+<!-- Players Online-->
+<div class="container-fluid">
+
+     <h1>Players Online</h1>
+     <p>Challenge players directly to a 15-minute match by submitting a duel request!</p>
+     <hr>
+
+     <div class="container">
+          <div class="row">
+               <div class="col-5">
+                    <h4>(Player 1)</h4>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-dark btn-sm disabled" role="button" aria-disabled="true">Classic</a>
+                    <a href="#" class="btn btn-danger btn-sm disabled" role="button" aria-disabled="true">Random Variant</a>
+               </div>
+          </div>
+          <hr>          
+          <div class="row">
+               <div class="col-5">
+                    <h4>(Player 2)</h4>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-dark btn-sm disabled" role="button" aria-disabled="true">Classic</a>
+                    <a href="#" class="btn btn-danger btn-sm disabled" role="button" aria-disabled="true">Random Variant</a>
+               </div>
+          </div>
+          <hr>          
+          <div class="row">
+               <div class="col-5">
+                    <h4>(etc.)</h4>
+               </div>
+               <div class="col">
+                    <a href="#" class="btn btn-dark btn-sm disabled" role="button" aria-disabled="true">Classic</a>
+                    <a href="#" class="btn btn-danger btn-sm disabled" role="button" aria-disabled="true">Random Variant</a>
+               </div>
+          </div>
+          <hr>
+     </div>
+</div>
+
+
+     
+
+
+
+     <!-- Sticky Footer -->
+     <footer class="sticky-footer">
+          <div class="container my-auto">
+               <div class="copyright text-center my-auto">
+                    <span>Copyright © Your Website 2019</span>
+               </div>
+          </div>
+     </footer>
+
+</div>
+
+<!-- div closing tag for wrapper element found on aprox line 39 -->
+</div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

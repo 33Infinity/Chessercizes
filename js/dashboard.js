@@ -11,7 +11,7 @@ var dashboard
     {
         $("#classicPVPFifteen").click(function()
         {
-            window.location.href = "./game.html?gt=classic&gm=pve&tc=quick&un=" + loggedInUser;
+            window.location.href = "./game.html?gt=classic&gm=pvp&tc=quick&un=" + loggedInUser;
         });
 
         $("#classicPVPFive").click(function()

@@ -64,15 +64,15 @@ var game
           if(timeControl === BLITZ)
           {
                currentPlayerRating = activeGameObject.CurrentPlayerBlitzRating;
-               opponetRating = activeGameObject.OpponentPlayerBlitzRating;
+               opponentRating = activeGameObject.OpponentPlayerBlitzRating;
           }
           else
           {
                currentPlayerRating = activeGameObject.CurrentPlayerQuickRating;
-               opponetRating = activeGameObject.OpponentPlayerQuickRating;
+               opponentRating = activeGameObject.OpponentPlayerQuickRating;
           }
           $("#currentPlayerRating").text(currentPlayerRating);
-          $("#opponentRating").text(opponetRating);
+          $("#opponentRating").text(opponentRating);
           $("#currentPlayer").text(userName);
           if(white===userName)
           {
@@ -112,6 +112,7 @@ var game
 
      function handleOpponentMove(responseObject)
      {
+          started = true;
           if(color=="w")
           {
                $("#playerTime").text(responseObject.WhiteTimeRemaining);
@@ -171,15 +172,31 @@ var game
                     whiteTimeRemaining-=1;
                     $("#playerTime").text(whiteTimeRemaining);
                }
-               else
+               else if(color == "b" && turn)
+               {
+                    blackTimeRemaining-=1;
+                    $("#playerTime").text(blackTimeRemaining);
+               }
+               else if(color == "w" && !turn)
                {
                     blackTimeRemaining-=1;
                     $("#opponentTime").text(blackTimeRemaining);
                }
+               else
+               {
+                    whiteTimeRemaining-=1;
+                    $("#opponentTime").text(whiteTimeRemaining);
+               }
           }
-          if(whiteTimeRemaining == 0 || blackTimeRemaining == 0)
+          if(whiteTimeRemaining == 0)
           {
-               alert("game over");
+               handleGameOver("b");
+               clearInterval(clockInterval);
+               return;
+          }
+          if(blackTimeRemaining == 0)
+          {
+               handleGameOver("w");
                clearInterval(clockInterval);
                return;
           }
@@ -187,7 +204,14 @@ var game
 
      function handleGameOver(winner, draw)
      {
+          var parameterNames = [];
+          var parameterValues = [];
+          var queryString = "";
+          var gameWon = winner === color;
           clearInterval(clockInterval);
+          var tempCurrentPlayerRating = currentPlayerRating;
+          currentPlayerRating = GetNewRating(currentPlayerRating, opponentRating, gameWon, false);
+          opponentRating = GetNewRating(opponentRating, tempCurrentPlayerRating, !gameWon, false);
           if(color == "w")
           {
                var result = "1-0";
@@ -199,13 +223,21 @@ var game
                {
                     result = "0-0";
                }
-               var parameterNames = ["action", "gameId", "result"];
-               var parameterValues = [GAMEOVER, gameID, result];
-               var queryString = getQueryString(parameterNames, parameterValues);
+               parameterNames = ["action", "gameId", "result"];
+               parameterValues = [GAMEOVER, gameID, result];
+               queryString = getQueryString(parameterNames, parameterValues);
                xmlhttp=new XMLHttpRequest();
                xmlhttp.open("POST","./php/GameOver.php?"+queryString,true);
                xmlhttp.send();
           }
+          $("#currentPlayerRating").text(currentPlayerRating);
+          $("#opponentRating").text(opponentRating);
+          var parameterNames = ["action", "userName", "rating", "timeControl"];
+          var parameterValues = [UPDATERATING, userName, currentPlayerRating, timeControl];
+          var queryString = getQueryString(parameterNames, parameterValues);
+          xmlhttp=new XMLHttpRequest();
+          xmlhttp.open("POST","./php/User.php?"+queryString,true);
+          xmlhttp.send();
      }
 }
 

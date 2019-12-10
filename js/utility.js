@@ -36,20 +36,19 @@ function validateEmail(mail)
 
 function GetNewRating(currentPlayerRating, opponentRating, result, draw)
 {
-    var newRating = 0;
     var k = 30;
-    var p1 = (1.0 / (1.0 + pow(10, ((currentPlayerRating-opponentRating) / 400))));
+    var p1 = (1.0 / (1.0 + Math.pow(10, ((currentPlayerRating-opponentRating) / 400))));
     if(draw)
     {
-        return currentPlayerRating + 30(.5 - p1);
+        return Math.floor(currentPlayerRating + k*(.5 - p1));
     }
     if(result)
     {
-        return currentPlayerRating + 30(1 - p1);
+        return Math.floor(currentPlayerRating + k*(1 - p1));
     }
     else
     {
-        return currentPlayerRating + 30(0 - p1);
+        return Math.floor(currentPlayerRating + k*(0 - p1));
     }
 }
 

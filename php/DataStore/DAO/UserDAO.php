@@ -89,4 +89,11 @@
             $this->Update($columns, $values, UserTO::TABLENAME);
             $this->CleanUp();
         }
+
+        function UpdateUserRaw($sql)
+        {
+            $this->Connect();
+            $this->UpdateRaw($sql);
+            $this->CleanUp();
+        }
     }

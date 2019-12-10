@@ -16,6 +16,7 @@
     define("GETOPPONENTMOVE", "getOpponentMove");
     define("LOGIN", "login");
     define("REMOVEUSERFROMQUEUE", "removeUserFromQueue");
+    define("UPDATERATING", "updateRating");
     //End Of Actions
 
     //Game Types

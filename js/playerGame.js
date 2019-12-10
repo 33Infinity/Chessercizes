@@ -59,8 +59,12 @@ var playerGame
     {
         if (game.game_over())
         {
-            var moves = game.moves();
-            handleGameOver(playerColor, false);
+            var winner = "w";
+            if(playerColor !== winner)
+            {
+                winner = "b";
+            }
+            handleGameOver(winner, false);
         }
     }
 
@@ -74,8 +78,12 @@ var playerGame
         });
         if (game.game_over())
         {
-            var moves = game.moves();
-            handleGameOver(playerColor, false);
+            var winner = "w";
+            if(playerColor === winner)
+            {
+                winner = "b";
+            }
+            handleGameOver(winner, false);
         }
     }
 }

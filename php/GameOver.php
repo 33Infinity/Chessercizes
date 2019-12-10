@@ -33,8 +33,8 @@
 
         function UpdateGameBase()
         {
-            $columns = [GameBaseTO::RESULT];
-            $values = [$this->_result];
-            $this->_gameBaseDAO->UpdateGame($columns, $values);
+            $sql = sprintf("update %s set %s='%s', %s=0 where %s=%s",
+            GameBaseTO::TABLENAME, GameBaseTO::RESULT, $this->_result, GameBaseTO::ACTIVE, GameBaseTO::GAMEID, $this->_gameID);
+            $this->_gameBaseDAO->UpdateGameRaw($sql);
         }
     }

@@ -15,6 +15,7 @@ var constants
     var GETOPPONENTMOVE = "getOpponentMove";
     var LOGIN = "login";
     var REMOVEUSERFROMQUEUE = "removeUserFromQueue";
+    var UPDATERATING = "updateRating";
     //End Of Actions
 
     //Parameters

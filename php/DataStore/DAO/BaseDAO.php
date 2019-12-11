@@ -154,6 +154,9 @@
                 $stmt->execute();
                 $stmt->close();
             }
+            else {
+                echo "failed";
+            }
         }
 
         function Delete($tableName)

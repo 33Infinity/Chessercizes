@@ -3,7 +3,7 @@
     {
         public static function url()
         {
-            $url="localhost";
+            $url="127.0.0.1";
             return $url;
         }
         public static function user()
@@ -13,7 +13,7 @@
         }
         public static function pass()
         {
-            $pass="root";
+            $pass="";
             return $pass;
         }
         public static function dbName()

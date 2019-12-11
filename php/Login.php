@@ -47,13 +47,18 @@
 
         public function PerformLogIn()
         {
-            $session=new Session();
-            $session->StartSession();
-            $columns = [UserTO::LOGGEDIN, UserTO::SESSIONID];
-            $values = [1, sprintf("%s", session_id())];
-            $this->_userDAO->AddFilter(sprintf("%s=?", UserTO::USERNAME));
-            $this->_userDAO->AddCommandParameter("s", $this->_userName);
-            $this->_userDAO->UpdateUser($columns, $values);
+            try {
+                $session = new Session();
+                $session->StartSession();
+                $columns = [UserTO::LOGGEDIN, UserTO::SESSIONID];
+                $values = [1, sprintf("%s", session_id())];
+                $this->_userDAO->AddFilter(sprintf("%s=?", UserTO::USERNAME));
+                $this->_userDAO->AddCommandParameter("s", $this->_userName);
+                $this->_userDAO->UpdateUser($columns, $values);
+            } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+            
         }
 
         public function GetLoggedInUser()
